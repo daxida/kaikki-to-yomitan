@@ -6,7 +6,8 @@
     "test": "npm run test:ts && npm run test:unit",
     "test:unit": "jest",
     "test:ts": "tsc --noEmit",
-    "test-write": "node write-tests.js"
+    "test-write": "node write-tests.js",
+    "lint": "npx eslint . --ext .js,.ts --fix"
   },
   "keywords": [],
   "license": "ISC",
@@ -19,10 +20,13 @@
   },
   "description": "Converts Kaikki JSON to Yomitan compatible dictionary.",
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
     "@types/jest": "^29.5.14",
     "@types/jquery": "^3.5.32",
-    "datatables.net": "^2.2.2",
     "@types/mocha": "^10.0.10",
+    "datatables.net": "^2.2.2",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
     "jest": "^29.7.0",
     "mocha": "^11.1.0",
     "ts-jest": "^29.2.6",
