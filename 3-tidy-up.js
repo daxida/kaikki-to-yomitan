@@ -38,22 +38,23 @@ function isInflectionGloss(glosses, formOf) {
     switch (targetIso) {
         case 'de':
             if (glosses.some(gloss => /des (?:Verbs|Adjektivs|Substantivs|Demonstrativpronomens|Possessivpronomens|Pronomens)/.test(gloss))) return true;
+            break;
         case 'en':
             if (glosses.some(gloss => /.*inflection of.*/.test(gloss))) return true;
-            if(!Array.isArray(formOf)) return false;
-            for (const {word: lemma} of formOf) {
-                if(!lemma) continue;
-                if (glosses.some(gloss => new RegExp(`of ${escapeRegExp(lemma)}($| \(.+?\)$)`).test(gloss))) return true;
-            }
-        case 'el':
             if (!Array.isArray(formOf)) return false;
             for (const { word: lemma } of formOf) {
                 if (!lemma) continue;
-                if (glosses.some(gloss => /του/.test(gloss))) return true;
-            }
+                if (glosses.some(gloss => new RegExp(`of ${escapeRegExp(lemma)}($| \(.+?\)$)`).test(gloss))) return true;
+            };
+            break;
+        case 'el':
+            if (!Array.isArray(formOf)) return false;
+            if (glosses.some(gloss => /του/.test(gloss))) return true;
+            break;
         case 'fr':
             if (/.*du verbe\s+((?:(?!\bdu\b).)*)$/.test(glossesString)) return true;
             if (/((?:(?:Masculin|Féminin)\s)?(?:(?:p|P)luriel|(?:s|S)ingulier)) de ([^\s]+)/.test(glossesString)) return true;
+            break;
     }
     return false;
 }
